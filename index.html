@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .water {
+            display: flex;
+            height: 100vh;
+            align-items: flex-end;
+        }
+
+        .water div {
+            background-color: blue;
+            height: 300px;
+            border: 1px solid black;
+            flex: 1;
+            transition: all 2s;
+        }
+
+        .water-down {
+            margin-bottom: -200px;
+            transition: all 2s;
+        }
+
+        #boat {
+            position: absolute;
+            bottom: 240px;
+            left: 50px;
+        }
+
+        #pillar-1 {
+            width: 50px;
+            height: 400px;
+            background-color: black;
+            position: absolute;
+            bottom: 0;
+            left: 33%;
+        }
+    </style>
+</head>
+<body>
+<img id="boat" src="boat.png" alt="" width="200">
+<button onclick="toggle_water_1()">Lower part 1</button>
+<button onclick="toggle_water_2()">Lower part 2</button>
+<button onclick="toggle_water_3()">Lower part 3</button>
+<button onclick="move_boat()">Move boat</button>
+<div id="pillar-1"></div>
+
+<div class="water">
+    <div id="part-1"></div>
+    <div id="part-2" class="water-down"></div>
+    <div id="part-3" class="water-down"></div>
+</div>
+<script>
+    let left_position_boat = 0;
+    let water_one = false;
+
+    function move_boat() {
+        if (water_one === true) {
+            left_position_boat = 800;
+            document.getElementById("boat").style.left = left_position_boat + "px";
+            document.getElementById("boat").style.transition = "all 2s";
+        }else{
+            alert("Gek, het water is nog laag.")
+        }
+    }
+
+    function toggle_water_1() {
+        document.getElementById("part-1").classList.toggle("water-down");
+    }
+
+    function toggle_water_2() {
+        water_one = true;
+
+        document.getElementById("part-2").classList.toggle("water-down");
+    }
+
+    function toggle_water_3() {
+        document.getElementById("part-3").classList.toggle("water-down");
+    }
+</script>
+</body>
+</html>
